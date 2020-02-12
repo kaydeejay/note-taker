@@ -1,18 +1,20 @@
-const notes = require('../db/db.js');
-
 module.exports = function(app){
+    
+    const notes = require('../db/db.js');
 
-    // ======== GET routes ========
-    app.get("/api/notes", (req,res) => {
-        res.json(notes);
-    });
+    // Create a new Note
+    app.post('/api/notes', notes.create);
 
-    // ======== POST routes ========
-    app.post('/api/notes', (req,res) => {
-        const newNote = req.body;
-        newNote.id = notes.length;
-        notes.push(newNote);
-        console.log(notes);
-        res.json(notes);
-    });
+    // Retrieve all Notes
+    app.get('/api/notes', notes.findAll);
+
+    // // ======== GET routes ========
+    // app.get("/api/notes", (req,res) => {
+    //     res.json(notes);
+    // });
+
+    // // ======== POST routes ========
+    // app.post('/api/notes', (req,res) => {
+    //     console.log(JSON.stringify(req.body));
+    // });
 }

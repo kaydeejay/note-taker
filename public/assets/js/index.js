@@ -106,14 +106,14 @@ var handleRenderSaveBtn = function() {
 // Render's the list of note titles
 var renderNoteList = function(notes) {
   $noteList.empty();
-
+  var notesParsed = JSON.parse(notes);
   var noteListItems = [];
 
-  for (var i = 0; i < notes.length; i++) {
-    var note = notes[i];
-
-    var $li = $("<li class='list-group-item'>").data(note);
-    var $span = $("<span>").text(note.title);
+  for (let note in notesParsed) {
+    var currentNote = notesParsed[note];
+    console.log(currentNote.id);
+    var $li = $("<li class='list-group-item'>").data(currentNote);
+    var $span = $("<span>").text(currentNote.title);
     var $delBtn = $(
       "<i class='fas fa-trash-alt float-right text-danger delete-note'>"
     );
