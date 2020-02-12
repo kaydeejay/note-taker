@@ -70,7 +70,7 @@ var handleNoteDelete = function(event) {
   var note = $(this)
     .parent(".list-group-item")
     .data();
-
+    
   if (activeNote.id === note.id) {
     activeNote = {};
   }
@@ -111,7 +111,6 @@ var renderNoteList = function(notes) {
 
   for (let note in notesParsed) {
     var currentNote = notesParsed[note];
-    console.log(currentNote.id);
     var $li = $("<li class='list-group-item'>").data(currentNote);
     var $span = $("<span>").text(currentNote.title);
     var $delBtn = $(

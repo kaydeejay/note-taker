@@ -8,6 +8,9 @@ module.exports = function(app){
     // Retrieve all Notes
     app.get('/api/notes', notes.findAll);
 
+    // Delete a Note by Id
+    app.delete('/api/notes/:id', notes.delete);
+
     // // ======== GET routes ========
     // app.get("/api/notes", (req,res) => {
     //     res.json(notes);
