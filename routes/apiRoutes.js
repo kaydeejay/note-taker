@@ -1,6 +1,6 @@
 module.exports = function(app){
     
-    const notes = require('../db/db.js');
+    const notes = require('../db/db-controller.js');
 
     // Create a new Note
     app.post('/api/notes', notes.create);
@@ -10,14 +10,4 @@ module.exports = function(app){
 
     // Delete a Note by Id
     app.delete('/api/notes/:id', notes.delete);
-
-    // // ======== GET routes ========
-    // app.get("/api/notes", (req,res) => {
-    //     res.json(notes);
-    // });
-
-    // // ======== POST routes ========
-    // app.post('/api/notes', (req,res) => {
-    //     console.log(JSON.stringify(req.body));
-    // });
 }
