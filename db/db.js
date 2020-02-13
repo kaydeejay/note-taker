@@ -5,38 +5,25 @@ module.exports = {
         const newNote = req.body;
         newNote.id = Object.keys(notes).length + 1;
         notes.push(newNote);
-        // console.log(notes);
-        // re-assign id's based on position in array
-        // notes.forEach(el => console.log(el.id));
+        // auto-increment ids
         for (let i = 0; i < notes.length; i++) {
-            // console.log(notes[i].id);
             notes[i].id = i;
         }
+        console.log(notes);
+        res.end(JSON.stringify(notes));
     },
     findAll: (req,res) => {
         console.log(`All Notes:\n${JSON.stringify(notes)}`);
-        res.end(`${JSON.stringify(notes)}`);
+        res.end(JSON.stringify(notes));
     },
     delete: (req,res) => {
-        const deleteNote = notes[`note${req.params.id}`];
-        delete notes[`note${req.params.id}`];
+        const deleteNote = notes[req.params.id];
+        notes.splice(req.params.id, 1);
+        // re-assign the id's for the notes
+        for (let i = 0; i < notes.length; i++) {
+            notes[i].id = i;
+        }
         console.log(`Deleted Note\n${JSON.stringify(deleteNote)}`);
         res.end(`Deleted Note\n${JSON.stringify(deleteNote)}\nNotes Remaining:\n${JSON.stringify(notes)}`);
     }
 };
-
-//function graveyard
-
-// create: (req,res) => {
-//     const newNote = req.body;
-//     newNote.id = Object.keys(notes).length + 1;
-//     newNote.getId = () => {return this};
-//     notes[`note${newNote.getId}`] = newNote;
-//     //find the largest id in notes
-//     for (note in notes) {
-//         let thisId = notes[note].getId();
-//         console.log(thisId);
-//     }
-//     console.log(`Notes after post:\n${JSON.stringify(notes)}`);
-//     res.end(`${JSON.stringify(newNote)}`);
-// },
